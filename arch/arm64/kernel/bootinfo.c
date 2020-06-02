@@ -1,7 +1,8 @@
 /*
  * bootinfo.c
  *
- * Copyright (C) 2011-2019 XiaoMi, Inc.
+ * Copyright (C) 2019 XiaoMi, Inc.
+ * Copyright (C) 2020 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -36,7 +37,7 @@ static const char * const poweroff_reasons[POFF_REASON_MAX] = {
 	[POFF_REASON_EVENT_RESEVER2]		= "resever2",
 	[POFF_REASON_EVENT_RESEVER3]		= "resever3",
 	[POFF_REASON_EVENT_CHARGER]		= "charger",
-	[POFF_REASON_EVENT_TFT]			= "tft",
+	[POFF_REASON_EVENT_TFT]		= "tft",
 	[POFF_REASON_EVENT_UVLO]		= "uvlo",
 	[POFF_REASON_EVENT_OTST3]		= "otst3",
 	[POFF_REASON_EVENT_STAGE3]		= "stage3",
@@ -55,7 +56,7 @@ static const char * const poweroff_reasons[POFF_REASON_MAX] = {
 	[POFF_REASON_EVENT_FAULT_PBS_WATCHDOG_TO] = "fault_pbs_watchdog",
 	[POFF_REASON_EVENT_FAULT_PBS_NACK]	= "fault_pbs_nack",
 	[POFF_REASON_EVENT_FAULT_RESTART_PON]	= "fault_restart_pon",
-	[POFF_REASON_EVENT_GEN2_OTST3]		= "otst3",
+	[POFF_REASON_EVENT_GEN2_OTST3]	= "otst3",
 	[POFF_REASON_EVENT_RESEVER7]		= "resever7",
 	[POFF_REASON_EVENT_RESEVER8]		= "resever8",
 	[POFF_REASON_EVENT_RESEVER9]		= "resever9",
@@ -69,12 +70,12 @@ static const char * const poweroff_reasons[POFF_REASON_MAX] = {
 static const char * const powerup_reasons[PU_REASON_MAX] = {
 	[PU_REASON_EVENT_KPD]		= "keypad",
 	[PU_REASON_EVENT_RTC]		= "rtc",
-	[PU_REASON_EVENT_CABLE]		= "cable",
+	[PU_REASON_EVENT_CABLE]	= "cable",
 	[PU_REASON_EVENT_SMPL]		= "smpl",
 	[PU_REASON_EVENT_PON1]		= "pon1",
 	[PU_REASON_EVENT_USB_CHG]	= "usb_chg",
 	[PU_REASON_EVENT_DC_CHG]	= "dc_chg",
-	[PU_REASON_EVENT_HWRST]		= "hw_reset",
+	[PU_REASON_EVENT_HWRST]	= "hw_reset",
 	[PU_REASON_EVENT_LPK]		= "long_power_key",
 };
 
@@ -82,7 +83,7 @@ static const char * const reset_reasons[RS_REASON_MAX] = {
 	[RS_REASON_EVENT_WDOG]		= "wdog",
 	[RS_REASON_EVENT_KPANIC]	= "kpanic",
 	[RS_REASON_EVENT_NORMAL]	= "reboot",
-	[RS_REASON_EVENT_OTHER]		= "other",
+	[RS_REASON_EVENT_OTHER]	= "other",
 };
 
 static struct kobject *bootinfo_kobj;
@@ -94,8 +95,8 @@ static struct kobj_attribute _name##_attr = {	\
 		.name = __stringify(_name),	\
 		.mode = 0644,			\
 	},					\
-	.show	= _name##_show,			\
-	.store	= NULL,				\
+	.show	= _name##_show,		\
+	.store	= NULL,			\
 }
 
 #define bootinfo_func_init(type, name, initval)	\
@@ -244,6 +245,9 @@ static int cpumaxfreq_show(struct seq_file *m, void *v)
 	switch (get_hw_version_platform()) {
 	case HARDWARE_PLATFORM_GRUS:
 		seq_printf(m, "2.3\n");
+		break;
+	case HARDWARE_PLATFORM_SIRIUS:
+		seq_printf(m, "2.2\n");
 		break;
 	default:
 		seq_printf(m, "2.2\n");
