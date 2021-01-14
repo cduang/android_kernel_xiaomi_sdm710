@@ -1425,24 +1425,6 @@ err_comp_cleanup:
 	return ret;
 }
 
-static int smblib_cancel_recheck(void)
-{
-	union power_supply_propval pval = {0};
-	struct power_supply *usb_psy;
-
-	usb_psy = power_supply_get_by_name("usb");
-	if (!usb_psy) {
-		pr_err("Could not get usb psy by cancel recheck\n");
-		return -ENODEV;
-	}
-
-	pval.intval = 0;
-	power_supply_set_property(usb_psy, POWER_SUPPLY_PROP_TYPE_RECHECK,
-					&pval);
-
-	return pval.intval;
-}
-
 #ifdef CONFIG_USB_CONFIGFS_UEVENT
 static void android_work(struct work_struct *data)
 {
