@@ -23,7 +23,6 @@
 #include <linux/pm_qos.h>
 #include <soc/qcom/socinfo.h>
 
-#define HARDWARE_PLATFORM_SIRIUS 2
 #define HARDWARE_PLATFORM_PYXIS  4
 #define HARDWARE_PLATFORM_VELA  7
 
