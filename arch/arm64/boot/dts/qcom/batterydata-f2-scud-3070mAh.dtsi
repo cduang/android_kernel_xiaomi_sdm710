@@ -1,3 +1,4 @@
+
 qcom,f2_scud_3070mAh {
 	qcom, = <24>;
 	/* #3732929_Xiaomi_F2_SCUD_3070mAH_FG_averaged_MasterSlave_Nov15th2018*/
@@ -18,6 +19,11 @@ qcom,f2_scud_3070mAh {
 				101 150  4400000
 				151 450  4400000
 				451 600  4100000>;
+	qcom,dynamic-fv-ranges = <0    100  4400000
+				101  200  4380000
+				201  300  4360000
+				301  400  4340000
+				401  500  4340000>;
 	qcom,checksum = <0x8F6C>;
 	qcom,gui-version = "PM660GUI - 0.0.0.45";
 	qcom,fg-profile-data = [

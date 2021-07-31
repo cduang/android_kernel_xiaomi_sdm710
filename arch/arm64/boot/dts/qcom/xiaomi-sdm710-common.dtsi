@@ -1,5 +1,5 @@
 /* Copyright (c) 2017, The Linux Foundation. All rights reserved.
- * Copyright (C) 2019 XiaoMi, Inc.
+ * Copyright (C) 2020 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -16,7 +16,7 @@
 #include "sdm670-sde-display.dtsi"
 
 &qupv3_se10_i2c {
-	#include "smb1355.dtsi"
+#include "smb1355.dtsi"
 };
 
 &ufsphy_mem {
@@ -130,7 +130,7 @@
 
 	cd-gpios = <&tlmm 96 0x1>;
 
-	status = "disabled";
+	status = "disable";
 };
 
 &tlmm {
@@ -307,6 +307,13 @@
 		status = "okay";
 		qcom,mode = <1>;    /* Digital out */
 		qcom,pull = <5>;    /* No pull */
+		/* qcom,vin-sel = <1>;*/ /* 1.8v */
+		/*
+		  qcom,src-sel = <0>;
+		  qcom,out-strength = <1>;
+		  qcom,master-en = <1>;
+		  qcom,invert = <1>;
+		*/
 	};
 };
 
@@ -320,7 +327,14 @@
 };
 
 &thermal_zones {
-	xo-therm-step {
+	xo-therm-cpu-step {
+		status = "disabled";
+	};
+	xo-therm-mdm-step {
+		status = "disabled";
+	};
+	xo-therm-batt-step {
 		status = "disabled";
 	};
 };
+

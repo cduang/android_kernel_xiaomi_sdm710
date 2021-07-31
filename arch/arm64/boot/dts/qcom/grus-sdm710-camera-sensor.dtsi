@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2016-2017, The Linux Foundation. All rights reserved.
- * Copyright (C) 2019 XiaoMi, Inc.
+ * Copyright (C) 2020 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -11,8 +11,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-
+//#include "grus-sdm710-pinctrl.dtsi"
 &soc {
+
 	led_flash_rear: qcom,camera-flash@0 {
 		cell-index = <0>;
 		reg = <0x00 0x00>;
@@ -22,7 +23,6 @@
 		switch-source = <&pm660l_switch0>;
 		status = "ok";
 	};
-
 	led_flash_rear_aux: qcom,camera-flash@1{
 		cell-index = <1>;
 		reg = <0x01 0x00>;
@@ -32,8 +32,7 @@
 		switch-source = <&pm660l_switch0>;
 		status = "ok";
 	};
-
-	led_flash_rear_ultra: qcom,camera-flash@2 {
+	led_flash_rear_ultra: qcom,camera-flash@2{
 		cell-index = <2>;
 		reg = <0x02 0x00>;
 		compatible = "qcom,camera-flash";
@@ -42,7 +41,6 @@
 		switch-source = <&pm660l_switch0>;
 		status = "ok";
 	};
-
 	camera_viodd_ldo: gpio-regulator@0 {
 		compatible = "regulator-fixed";
 		reg = <0x00 0x00>;
@@ -52,6 +50,8 @@
 		regulator-enable-ramp-delay = <135>;
 		enable-active-high;
 		gpio = <&tlmm 28 0>;
+		//pinctrl-names = "default";
+		//pinctrl-0 = <&grus_cam_sensor_vio>;
 		vin-supply = <&pm660_s4>;
 	};
 };
@@ -61,7 +61,6 @@
 		compatible = "qcom,cam-res-mgr";
 		status = "ok";
 	};
-
 	actuator_rear_aux: qcom,actuator@1 {
 		cell-index = <1>;
 		reg = <0x1>;
@@ -81,7 +80,6 @@
 		gpio-req-tbl-label = "CAM_VAF";
 		status = "ok";
 	};
-
 	eeprom_rear_aux: qcom,eeprom@1 {
 		cell-index = <1>;
 		reg = <1>;
@@ -107,7 +105,6 @@
 		cci-master = <1>;
 		status = "ok";
 	};
-
 	eeprom_rear: qcom,eeprom@0 {
 		cell-index = <0>;
 		reg = <0>;
@@ -175,8 +172,8 @@
 		gpio-req-tbl-flags = <0>; //1-input,0-output
 		gpio-req-tbl-label = "CAM_VAF";
 		status = "ok";
-	};
 
+	};
 	eeprom_rear_ultra: qcom,eeprom@3{
 		cell-index = <3>;
 		reg = <3>;
@@ -195,8 +192,8 @@
 		rgltr-load-current = <0>;
 		cci-master = <0>;
 		status = "ok";
-	};
 
+	};
 	qcom,cam-sensor@0 {
 		cell-index = <0>;
 		compatible = "qcom,cam-sensor";
@@ -233,7 +230,7 @@
 		gpio-req-tbl-flags = <1 0 0>; //1-input,0-output
 		gpio-req-tbl-label = "CAMIF_MCLK0",
 					"CAM_RESET0",
-					"CAM_VDIG0";
+				    	"CAM_VDIG0";
 		sensor-mode = <0>;
 		cci-master = <0>;
 		status = "ok";
@@ -242,7 +239,6 @@
 		clock-cntl-level = "turbo";
 		clock-rates = <19200000>;
 	};
-
 	qcom,cam-sensor@1 {
 		cell-index = <1>;
 		compatible = "qcom,cam-sensor";
@@ -281,6 +277,7 @@
 				"CAM_RESET1",
 				    "CAM_VDIG1";
 		sensor-mode = <0>;
+		/*cci-device = <0>;*/
 		cci-master = <1>;
 		status = "ok";
 		clocks = <&clock_camcc CAM_CC_MCLK1_CLK>;
@@ -288,7 +285,6 @@
 		clock-cntl-level = "turbo";
 		clock-rates = <24000000>;
 	};
-
 	qcom,cam-sensor@2 {
 		cell-index = <2>;
 		compatible = "qcom,cam-sensor";
@@ -326,7 +322,7 @@
 		gpio-req-tbl-label = "CAMIF_MCLK2",
 					"CAM_MIPISEL",
 					"CAM_RESET2",
-					"CAM_VDIG2";
+				    	"CAM_VDIG2";
 		sensor-mode = <0>;
 		cci-device = <0>;
 		cci-master = <1>;
@@ -336,7 +332,6 @@
 		clock-cntl-level = "turbo";
 		clock-rates = <24000000>;
 	};
-
 	qcom,cam-sensor@3 {
 		cell-index = <3>;
 		compatible = "qcom,cam-sensor";
@@ -386,4 +381,5 @@
 		clock-cntl-level = "turbo";
 		clock-rates = <24000000>;
 	};
+
 };

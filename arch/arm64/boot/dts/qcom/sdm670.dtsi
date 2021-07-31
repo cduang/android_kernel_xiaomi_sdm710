@@ -1,5 +1,5 @@
 /* Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
- * Copyright (C) 2019 XiaoMi, Inc.
+ * Copyright (C) 2020 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -466,7 +466,6 @@
 
 			fstab {
 				compatible = "android,fstab";
-
 				system {
 					compatible = "android,system";
 					dev = "/dev/block/platform/soc/7c4000.sdhci/by-name/system";
@@ -475,7 +474,6 @@
 					fsmgr_flags = "wait";
 					status = "ok";
 				};
-
 				vendor {
 					compatible = "android,vendor";
 					dev = "/dev/block/platform/soc/7c4000.sdhci/by-name/vendor";
@@ -889,7 +887,7 @@
 	};
 
 	qcom,qbt1000 {
-		status = "disabled";
+		status="disabled";
 		compatible = "qcom,qbt1000";
 		clock-names = "core", "iface";
 		clock-frequency = <25000000>;
@@ -2639,7 +2637,6 @@
 		qcom,wlan-msa-fixed-region = <&wlan_msa_mem>;
 		qcom,gpio-force-fatal-error = <&smp2pgpio_wlan_1_in 0 0>;
 		qcom,gpio-early-crash-ind = <&smp2pgpio_wlan_1_in 1 0>;
-		qcom,wifi-ant = <&tlmm 137 0>;
 		qcom,smmu-s1-bypass;
 		#cooling-cells = <2>;
 	};

@@ -1,5 +1,5 @@
 /* Copyright (c) 2017, The Linux Foundation. All rights reserved.
- * Copyright (C) 2019 XiaoMi, Inc.
+ * Copyright (C) 2020 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -56,13 +56,14 @@
 		pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend>;
 		qcom,platform-te-gpio = <&tlmm 10 0>;
 		qcom,platform-reset-gpio = <&tlmm 75 0>;
+		/*qcom,panel-errfg-gpio = <&tlmm 122 0>;*/
 
 		qcom,dsi-panel = <&dsi_ss_fhd_ea8074_cmd>;
 		vddio-supply = <&pm660_l11>;
 		vci-supply = <&disp_vci_vreg>;
 	};
 
-	dsi_ss_ea8076_fhd_cmd_display: qcom,dsi-display@18 {
+	dsi_ss_ea8076_fhd_cmd_display: qcom,dsi-display@21 {
 		compatible = "qcom,dsi-display";
 		label = "dsi_ss_ea8076_fhd_cmd_display";
 		qcom,display-type = "primary";
@@ -78,6 +79,7 @@
 		pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend>;
 		qcom,platform-te-gpio = <&tlmm 10 0>;
 		qcom,platform-reset-gpio = <&tlmm 75 0>;
+		/*qcom,panel-errfg-gpio = <&tlmm 78 0>;*/
 
 		qcom,dsi-panel = <&dsi_ss_fhd_ea8076_cmd>;
 		vddio-supply = <&pm660_l11>;

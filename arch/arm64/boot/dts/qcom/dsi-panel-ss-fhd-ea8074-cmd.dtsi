@@ -1,5 +1,5 @@
 /* Copyright (c) 2015, The Linux Foundation. All rights reserved.
- * Copyright (C) 2019 XiaoMi, Inc.
+ * Copyright (C) 2020 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -55,7 +55,7 @@
 		qcom,mdss-dsi-te-check-enable;
 		qcom,mdss-dsi-te-using-te-pin;
 		qcom,mdss-dsi-tx-eot-append;
-		/*qcom,mdss-dsi-on-command-tuning;*/
+		//qcom,mdss-dsi-on-command-tuning;
 		qcom,mdss-dsi-panel-hdr-enabled;
 		qcom,mdss-dsi-panel-hdr-color-primaries = <14500 15500 32000
 			17000 15500 30000 8000 3000>;
@@ -63,6 +63,7 @@
 		qcom,mdss-dsi-panel-blackness-level = <3230>;
 		qcom,dispparam-enabled;
 		qcom,mdss-panel-on-dimming-delay = <120>;
+		qcom,mdss-dsi-panel-dc-threshold = <320>;
 		qcom,esd-err-irq-gpio = <&tlmm 122 0x2002>;
 		qcom,bl-update-flag = "delay_until_first_frame";
 		qcom,mdss-dsi-display-timings {
@@ -110,23 +111,26 @@
 				qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-dispparam-dimmingon-command = [39 01 00 00 01 00 02 53 28];
 				qcom,mdss-dsi-dispparam-dimmingon-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-dispparam-dimmingoff-command = [39 01 00 00 00 00 02 53 20];
+				qcom,mdss-dsi-dispparam-dimmingoff-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-doze-hbm-command = [
 				39 01 00 00 64 00 03 F0 5A 5A
 				39 00 00 00 00 00 02 EF B0
 				39 00 00 00 00 00 02 B0 17
 				39 00 00 00 00 00 04 E3 00 00 00
 				39 01 00 00 01 00 02 53 22
-				39 01 00 00 00 00 03 F0 A5 A5];
+				39 01 00 00 00 00 03 F0 A5 A5
+				39 01 00 00 00 00 03 51 00 01];
 				qcom,mdss-dsi-doze-lbm-command = [
 				39 01 00 00 64 00 03 F0 5A 5A
 				39 00 00 00 00 00 02 EF B0
 				39 00 00 00 00 00 02 B0 17
 				39 00 00 00 00 00 04 E3 00 00 00
 				39 01 00 00 01 00 02 53 23
-				39 01 00 00 00 00 03 F0 A5 A5];
+				39 01 00 00 00 00 03 F0 A5 A5
+				39 01 00 00 00 00 03 51 00 01];
 				qcom,mdss-dsi-nolp-command = [
 				05 01 00 00 00 00 02 28 00
-				39 00 00 00 00 00 03 51 00 00
 				39 01 00 00 00 00 03 F0 5A 5A
 				39 00 00 00 00 00 02 B0 17
 				39 00 00 00 00 00 04 E3 86 80 01
@@ -170,6 +174,11 @@
 					39 00 00 00 00 00 03 E2 00 40
 					39 01 00 00 00 00 03 F0 A5 A5];
 				qcom,mdss-dsi-dispparam-seed-off-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-dispparam-crc-off-command = [
+					39 00 00 00 00 00 03 F0 5A 5A
+					39 00 00 00 00 00 03 E2 00 41
+					39 01 00 00 00 00 03 F0 A5 A5];
+				qcom,mdss-dsi-dispparam-crc-off-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-h-sync-pulse = <0>;
 			};
 		};
